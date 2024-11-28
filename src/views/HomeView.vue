@@ -36,7 +36,7 @@
     </div>
     <div class="product-list">
         <h2>LISTADO DE PRODUCTOS</h2>
-        <button>VER LISTADO DE PRODUCTOS</button>
+        <button @click="verListadoProductos">VER LISTADO DE PRODUCTOS</button>
     </div>
     <div class="footer">
         <div>
@@ -88,6 +88,11 @@ export default {
                 .catch(error => {
                     console.error('Error al obtener la información:', error); // Manejo de errores
                 });
+        },
+        verListadoProductos() {
+            this.$router.push({
+                name: 'listadoProductos'
+            }); 
         }
     },
     mounted() {

@@ -62,14 +62,6 @@ export default {
       }
       if (Object.keys(this.errors).length === 0) {
         // Llamar al servicio REST de Registro 
-        /*
-            console.log('Datos ingresados en el registro:', {
-            nombre: this.nombre,
-            email: this.email,
-            telefono: this.telefono,
-            contrasena: this.contrasena,
-            repetirContrasena: this.repetirContrasena
-    }); */
         this.$router.push('/confirmacionRegistro')
       }
     },
