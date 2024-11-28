@@ -4,11 +4,11 @@
     <form @submit.prevent="login">
       <div class="form-group">
         <label for="email">Correo electrónico</label>
-        <input type="email" id="email" v-model="email" />
+        <input type="email" id="email" v-model="user.correoElectronico" />
       </div>
       <div class="form-group">
         <label for="password">Contraseña</label>
-        <input type="password" id="password" v-model="password" />
+        <input type="password" id="password" v-model="user.contrasena" />
       </div>
           <button type="button" class="" @click="login()">Iniciar Sesión</button>
     </form>
@@ -25,8 +25,8 @@ export default {
   data() {
     return {
           user: {
-              correoElectronico: 'juan.perez@example.com',//modificar
-              contrasena: 'secreta123',//dejar vacio
+              correoElectronico: '',//'juan.perez@example.com',modificar
+              contrasena: ''//'secreta123',//dejar vacio
           }
     }
   },
