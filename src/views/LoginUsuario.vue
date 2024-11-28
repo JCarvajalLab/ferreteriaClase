@@ -1,5 +1,3 @@
-Excelente decisión! Un login es un componente fundamental en cualquier aplicación. Aquí te dejo un ejemplo básico de un login en Vue 3 que puedes adaptar a tus necesidades:
-HTML
 <template>
   <div class="login-container">
     <h1>Iniciar sesión</h1>
@@ -12,7 +10,7 @@ HTML
         <label for="password">Contraseña</label>
         <input type="password" id="password" v-model="password" />
       </div>
-         <button type="button" class="" @click="login()">Iniciar Sesión</button>
+          <button type="button" class="" @click="login()">Iniciar Sesión</button>
     </form>
     <p>
       ¿No tienes cuenta? <router-link to="/registro">Regístrate</router-link>
@@ -27,20 +25,20 @@ export default {
   data() {
     return {
           user: {
-              email: 'usuario@ejemplo.com',//modificar
-              password: 'contraseñaSegura',//dejar vacio
+              correoElectronico: 'juan.perez@example.com',//modificar
+              contrasena: 'secreta123',//dejar vacio
           }
     }
   },
   methods: {
 login() {
-          if (!this.user.email || !this.user.password) {
+          if (!this.user.correoElectronico || !this.user.contrasena) {
               alert('Debes llenar todos los campos')
           }
           else {
-              axios.get(`https://raw.githubusercontent.com/shaka0241/tiendaMascotaApi/main/login.json`)
+              axios.get(`https://raw.githubusercontent.com/shaka0241/ferreteria_Api/main/login.json`)
                   .then((resp) => {
-                      if (this.user.email === resp.data.loginRequest.email && this.user.password === resp.data.loginRequest.password) {
+                      if (this.user.correoElectronico === resp.data.login.correoElectronico && this.user.contrasena === resp.data.login.contrasena) {
                           alert('logueado'),
                           this.$router.push({ name: 'home' })
                       } else {

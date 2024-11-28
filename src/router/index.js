@@ -12,7 +12,7 @@ const routes = [
     { path: '/', redirect: '/login'},
     { path: '/login', name: 'login', component: LoginUsuario },
     { path: '/registro', name: 'registro', component: RegistroUsuario },
-    { path: '/confirmacion-registro', name: 'confirmacionRegistro', component: ConfirmacionRegistro },
+    { path: '/confirmacionRegistro', name: 'confirmacionRegistro', component: ConfirmacionRegistro },
     { path: '/home', name: 'home', component: HomeView },
     { path: '/productos', name: 'listadoProductos', component: ListadoProductos },
     { path: '/productos/:id', name: 'detalleProducto', component: DetalleProducto, props: true },

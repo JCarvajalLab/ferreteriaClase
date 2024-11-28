@@ -6,22 +6,27 @@
       <div class="form-group">
         <label for="nombre">Nombre</label>
         <input type="text" id="nombre" v-model="nombre" required />
+        <div v-if="errors.nombre" class="error">{{ errors.nombre }}</div>
       </div>
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" v-model="email" required />
+        <div v-if="errors.email" class="error">{{ errors.email }}</div>
       </div>
       <div class="form-group">
         <label for="telefono">Teléfono</label>
         <input type="tel" id="telefono" v-model="telefono" required />
+        <div v-if="errors.telefono" class="error">{{ errors.telefono }}</div>
       </div>
       <div class="form-group">
         <label for="contrasena">Contraseña</label>
         <input type="password" id="contrasena" v-model="contrasena" required />
+        <div v-if="errors.contrasena" class="error">{{ errors.contrasena }}</div>
       </div>
       <div class="form-group">
         <label for="repetirContrasena">Repetir Contraseña</label>
         <input type="password" id="repetirContrasena" v-model="repetirContrasena" required />
+        <div v-if="errors.repetirContrasena" class="error">{{ errors.repetirContrasena }}</div>
       </div>
       <button type="submit">Regístrate</button>
     </form>
@@ -36,24 +41,51 @@ export default {
       email: '',
       telefono: '',
       contrasena: '',
-      repetirContrasena: ''
-    };
+      repetirContrasena: '',
+      errors: {}
+    }
   },
   methods: {
     registrarUsuario() {
-      console.log('Usuario registrado:', {
-        nombre: this.nombre,
-        email: this.email,
-        telefono: this.telefono,
-        contrasena: this.contrasena,
-        repetirContrasena: this.repetirContrasena
-      });
+      this.errors = {}
+      if (!this.nombre) {
+        this.errors.nombre = 'El nombre es obligatorio'
+      }
+      if (!this.email || !this.validarEmail(this.email)) {
+        this.errors.email = 'El email es obligatorio y debe tener un formato válido'
+      }
+      if (!this.telefono || !this.validarTelefono(this.telefono)) {
+        this.errors.telefono = 'El teléfono es obligatorio y debe tener un formato válido'
+      }
+      if (!this.contrasena || !this.repetirContrasena || this.contrasena !== this.repetirContrasena) {
+        this.errors.contrasena = 'La contraseña es obligatoria y debe coincidir con la repetición'
+      }
+      if (Object.keys(this.errors).length === 0) {
+        // Llamar al servicio REST de Registro 
+        /*
+            console.log('Datos ingresados en el registro:', {
+            nombre: this.nombre,
+            email: this.email,
+            telefono: this.telefono,
+            contrasena: this.contrasena,
+            repetirContrasena: this.repetirContrasena
+    }); */
+        this.$router.push('/confirmacionRegistro')
+      }
+    },
+    validarEmail(email) {
+      const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+      return regex.test(email)
+    },
+    validarTelefono(telefono) {
+      const regex = /^\d{9}$/
+      return regex.test(telefono)
     },
     regresarAlLogin() {
-      this.$router.push('/login'); 
+      this.$router.push('/login')
     }
   }
-};
+}
 </script>
 
 <style scoped>
